@@ -7,7 +7,6 @@ import { useContext } from "react";
 
 const Transaction = (props) => {
   const { items } = props;
-  const name = useContext(DataContext);
   return (
     // ใ้ช้ mapping ==> เพิ่มได้ auto
     // ใช้ spread op ==> ...e ลดรูแคำสั่ง assignment propertiesได้
@@ -17,7 +16,6 @@ const Transaction = (props) => {
           return <Item {...e} key={e.id}></Item>;
         })}
       </ul>
-      {name}
     </div>
   );
 };

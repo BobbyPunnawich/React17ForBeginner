@@ -22,7 +22,12 @@ function App() {
   };
   return (
     // Nested Component
-    <DataContext.Provider value={"bobby"}>
+    <DataContext.Provider
+      value={{
+        income: 50000,
+        expense: -8000,
+      }}
+    >
       <div className="container">
         <Title></Title>
         <ReportComponent></ReportComponent>
