@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Transaction from "./components/Transaction";
+import FormComponent from "./components/FormComponent";
+import { useState } from "react";
+import DataContext from "./data/DataContext";
+import ReportComponent from "./components/ReportComponent";
 
+const Title = () => {
+  const design = { color: "red", textAlign: "center" };
+  return <h2 style={design}> โปรแกรมบัญชีรายรับ - รายจ่าย</h2>;
+};
+
+//Parent Component
 function App() {
+  const [items, setItems] = useState([]);
+  const onAddNewItem = (newItem) => {
+    //
+    setItems((prvItems) => {
+      return [newItem, ...prvItems];
+    });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // Nested Component
+    <DataContext.Provider value={"bobby"}>
+      <div className="container">
+        <Title></Title>
+        <ReportComponent></ReportComponent>
+        <FormComponent onAddItem={onAddNewItem}></FormComponent>
+
+        <Transaction items={items}></Transaction>
+      </div>
+    </DataContext.Provider>
   );
 }
 
